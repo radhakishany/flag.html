@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Flag Copy</title>
+	<style>
+		*{
+			padding: 0px;
+			margin: 0px;
+			box-sizing: border-box;
+
+		}
+		body{
+			background-color: #369;
+		}
+		.wrapper{
+			display: flex;
+			padding-left: 10%;
+			margin: 40px;
+		}
+		.right{
+			border: 1px solid; 
+			height: 50vh;
+			width: 60vh;
+			margin: 100px;
+			background-color: #fff;
+
+		}
+		.right h1{ 
+			margin: 70px 0  0 20vh ;
+		}
+		.right input{
+			margin: 30px 0  0  20px;
+			height: 50px;
+			width: 90%;
+		}
+		.right button{
+			margin: 10px 0  0 20px;
+			height: 50px;
+			width: 90%;
+			background-color: yellow;
+		}
+		.left{
+			border: 1px solid;
+			height: 50vh;
+			width: 60vh;
+			margin-top: 100px;
+			background-color: #fff;
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="right">
+			<h1>Get Flags</h1>
+			<input type="text" placeholder="write a country's name"></input>
+			<button type="Submit
+			">Get Flags </button>
+			
+		</div>
+		<div class="left">
+			
+		</div>
+	</div>
+	<script>
+			
+			let input = document.querySelector("input")
+			let button = document.querySelector("button")
+
+			button.onclick= (radhe)=>{
+				radhe.preventDefault()
+				let cont = input.value.toLowerCase()
+				data(cont)
+
+
+				async function data(cont){
+					let get = await fetch(`https://flagcdn.com/en/codes.json`)
+					let country = await get.json()
+					console.log(country)
+
+					for(let i in country){
+						country[i] = country[i].toLowerCase()
+						if(country[i] === cont){
+							let photo = document.createElement("img")
+							document.querySelector(".left").appendChild(photo)
+						}
+					}
+				}
+
+			}
+
+
+			 
+
+
+	</script>
+	
+</body>
+</html>
